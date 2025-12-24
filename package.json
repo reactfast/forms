@@ -1,11 +1,13 @@
 {
-  "name": "@jonathonscott/novaforms",
+  "name": "@reactfast/forms",
   "version": "0.1.0",
   "description": "Dynamic React forms with JSON schema, modifiers, and subforms",
   "main": "dist/ctrlform.cjs.js",
   "module": "dist/ctrlform.es.js",
+  "types": "index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "index.d.ts"
   ],
   "type": "module",
   "scripts": {
@@ -45,5 +47,8 @@
   "peerDependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

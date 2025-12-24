@@ -1,9 +1,9 @@
-# 🎛️ CtrlForm
+# 🎛️ @reactfast/forms
 
 **Dynamic React forms powered by JSON schemas, modifiers, and subforms.**  
 Create complex, adaptive form systems without boilerplate — designed for scale, simplicity, and composability.
 
-[![npm version](https://img.shields.io/npm/v/@jonathonscott/novaforms.svg)](https://www.npmjs.com/package/@jonathonscott/novaforms)
+[![npm version](https://img.shields.io/npm/v/@reactfast/forms.svg)](https://www.npmjs.com/package/@reactfast/forms)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Build](https://github.com/jonathonmcclendon/NovaForms/actions/workflows/build.yml/badge.svg)](https://github.com/jonathonmcclendon/NovaForms/actions)
 [![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/jonathonmcclendon/NovaForms/issues)
@@ -15,9 +15,9 @@ Create complex, adaptive form systems without boilerplate — designed for scale
 ## ⚙️ Installation
 
 ```bash
-npm install @jonathonscott/novaforms
+npm install @reactfast/forms
 # or
-yarn add @jonathonscott/novaforms
+yarn add @reactfast/forms
 ```
 
 CtrlForm requires **React 18+** and **React DOM 18+** as peer dependencies.
@@ -30,7 +30,7 @@ The simplest way to get started:
 
 ```jsx
 import { useState } from "react";
-import { Form, createFormHandler } from "@jonathonscott/novaforms";
+import { Form, createFormHandler } from "@reactfast/forms";
 
 const fields = [
   { name: "firstName", title: "First Name", type: "string", width: 50 },
@@ -117,7 +117,7 @@ Nova Forms comes with 20+ field types ready to use:
 You can extend Nova Forms with your own field types:
 
 ```jsx
-import { registerField } from "@jonathonscott/novaforms";
+import { registerField } from "@reactfast/forms";
 
 function QRCodeScannerField({ field, value, onChange }) {
   return (
@@ -312,7 +312,7 @@ If you're currently mapping fields manually:
 
 **Before:**
 ```jsx
-import { ReturnFieldsV2, createFormHandler, initializeFormData } from "@jonathonscott/novaforms";
+import { ReturnFieldsV2, createFormHandler, initializeFormData } from "@reactfast/forms";
 
 const [formData, setFormData] = useState(() => initializeFormData(fields));
 const handleChange = createFormHandler({ fields, setState: setFormData });
@@ -334,7 +334,7 @@ return (
 
 **After:**
 ```jsx
-import { Form, createFormHandler } from "@jonathonscott/novaforms";
+import { Form, createFormHandler } from "@reactfast/forms";
 
 const [formData, setFormData] = useState({});
 const handleChange = createFormHandler({ fields, setState: setFormData });
