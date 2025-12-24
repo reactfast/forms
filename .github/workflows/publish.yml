@@ -35,7 +35,11 @@ jobs:
 
       - name: Bump version
         run: |
-          npm version patch -m "chore(release): %s [skip ci]"
+          latest=$(git tag --sort=-v:refname | head -n1)
+          echo "Latest tag: $latest"
+          npm version patch --no-git-tag-version
+          new_version=$(node -p "require('./package.json').version")
+          git tag -a "v$new_version" -m "chore(release): v$new_version [skip ci]"
 
       - name: Push version commit & tag
         run: |
