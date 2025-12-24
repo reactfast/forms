@@ -1,5 +1,7 @@
 # 🎛️ @reactfast/forms
 
+test auto publish
+
 **Dynamic React forms powered by JSON schemas, modifiers, and subforms.**  
 Create complex, adaptive form systems without boilerplate — designed for scale, simplicity, and composability.
 
@@ -47,13 +49,7 @@ export default function App() {
     setState: setFormData,
   });
 
-  return (
-    <Form
-      fields={fields}
-      onChange={handleChange}
-      formData={formData}
-    />
-  );
+  return <Form fields={fields} onChange={handleChange} formData={formData} />;
 }
 ```
 
@@ -80,35 +76,35 @@ export default function App() {
 
 Nova Forms comes with 20+ field types ready to use:
 
-| Type | Description | Example |
-|------|-------------|---------|
-| `string` | Text input | `{ type: "string", title: "Name" }` |
-| `text` | Textarea | `{ type: "text", title: "Description" }` |
-| `email` | Email input with validation | `{ type: "email", title: "Email" }` |
-| `tel` | Phone number input | `{ type: "tel", title: "Phone" }` |
-| `url` | URL input | `{ type: "url", title: "Website" }` |
-| `number` | Number input | `{ type: "number", title: "Age" }` |
-| `boolean` | Checkbox | `{ type: "boolean", title: "Subscribe" }` |
-| `toggle` | Toggle switch | `{ type: "toggle", title: "Enable" }` |
-| `date` | Date picker | `{ type: "date", title: "Birth Date" }` |
-| `datetime` | Date and time picker | `{ type: "datetime", title: "Event Time" }` |
-| `time` | Time picker | `{ type: "time", title: "Start Time" }` |
-| `color` | Color picker | `{ type: "color", title: "Theme Color" }` |
-| `select` | Single select dropdown | `{ type: "select", options: [...] }` |
-| `multiselect` | Multi-select dropdown | `{ type: "multiselect", options: [...] }` |
-| `radio` | Radio button group | `{ type: "radio", options: [...] }` |
-| `file` | File upload | `{ type: "file", title: "Upload" }` |
-| `fileV2` | Enhanced file upload | `{ type: "fileV2", title: "Photo" }` |
-| `uploadToBase` | Base64 image upload | `{ type: "uploadToBase", title: "Avatar" }` |
-| `array` | Dynamic subform/array | `{ type: "array", fields: [...] }` |
-| `subForm` | Nested form group | `{ type: "subForm", fields: [...] }` |
-| `signature` | Signature pad | `{ type: "signature", title: "Signature" }` |
-| `rating` | Star rating | `{ type: "rating", title: "Rating" }` |
-| `scale` | Likert scale | `{ type: "scale", title: "Satisfaction" }` |
-| `captcha` | reCAPTCHA | `{ type: "captcha" }` |
-| `header` | Section header | `{ type: "header", title: "Section" }` |
-| `paragraph` | Static text | `{ type: "paragraph", content: "Text" }` |
-| `image` | Static image | `{ type: "image", image: { src: "..." } }` |
+| Type           | Description                 | Example                                     |
+| -------------- | --------------------------- | ------------------------------------------- |
+| `string`       | Text input                  | `{ type: "string", title: "Name" }`         |
+| `text`         | Textarea                    | `{ type: "text", title: "Description" }`    |
+| `email`        | Email input with validation | `{ type: "email", title: "Email" }`         |
+| `tel`          | Phone number input          | `{ type: "tel", title: "Phone" }`           |
+| `url`          | URL input                   | `{ type: "url", title: "Website" }`         |
+| `number`       | Number input                | `{ type: "number", title: "Age" }`          |
+| `boolean`      | Checkbox                    | `{ type: "boolean", title: "Subscribe" }`   |
+| `toggle`       | Toggle switch               | `{ type: "toggle", title: "Enable" }`       |
+| `date`         | Date picker                 | `{ type: "date", title: "Birth Date" }`     |
+| `datetime`     | Date and time picker        | `{ type: "datetime", title: "Event Time" }` |
+| `time`         | Time picker                 | `{ type: "time", title: "Start Time" }`     |
+| `color`        | Color picker                | `{ type: "color", title: "Theme Color" }`   |
+| `select`       | Single select dropdown      | `{ type: "select", options: [...] }`        |
+| `multiselect`  | Multi-select dropdown       | `{ type: "multiselect", options: [...] }`   |
+| `radio`        | Radio button group          | `{ type: "radio", options: [...] }`         |
+| `file`         | File upload                 | `{ type: "file", title: "Upload" }`         |
+| `fileV2`       | Enhanced file upload        | `{ type: "fileV2", title: "Photo" }`        |
+| `uploadToBase` | Base64 image upload         | `{ type: "uploadToBase", title: "Avatar" }` |
+| `array`        | Dynamic subform/array       | `{ type: "array", fields: [...] }`          |
+| `subForm`      | Nested form group           | `{ type: "subForm", fields: [...] }`        |
+| `signature`    | Signature pad               | `{ type: "signature", title: "Signature" }` |
+| `rating`       | Star rating                 | `{ type: "rating", title: "Rating" }`       |
+| `scale`        | Likert scale                | `{ type: "scale", title: "Satisfaction" }`  |
+| `captcha`      | reCAPTCHA                   | `{ type: "captcha" }`                       |
+| `header`       | Section header              | `{ type: "header", title: "Section" }`      |
+| `paragraph`    | Static text                 | `{ type: "paragraph", content: "Text" }`    |
+| `image`        | Static image                | `{ type: "image", image: { src: "..." } }`  |
 
 ---
 
@@ -139,8 +135,8 @@ const fields = [
     name: "eventCheckIn",
     title: "Check In",
     type: "qrScanner",
-    width: 100
-  }
+    width: 100,
+  },
 ];
 ```
 
@@ -152,53 +148,53 @@ const fields = [
 
 Renders a form based on your field array with integrated modifiers and conditions.
 
-| Prop           | Type                  | Description                                     |
-| -------------- | --------------------- | ----------------------------------------------- |
-| `fields`       | `array`               | Array of field definitions                      |
-| `onChange`     | `function`            | Change handler (from createFormHandler)         |
-| `formData`     | `object`              | Form data object from parent state              |
-| `theme`        | `object` _(optional)_ | Custom theme overrides                          |
-| `isMobileView` | `boolean` _(optional)_ | Force mobile layout (full width)               |
+| Prop           | Type                   | Description                             |
+| -------------- | ---------------------- | --------------------------------------- |
+| `fields`       | `array`                | Array of field definitions              |
+| `onChange`     | `function`             | Change handler (from createFormHandler) |
+| `formData`     | `object`               | Form data object from parent state      |
+| `theme`        | `object` _(optional)_  | Custom theme overrides                  |
+| `isMobileView` | `boolean` _(optional)_ | Force mobile layout (full width)        |
 
 ### `createFormHandler`
 
 Creates a change handler that manages state and applies modifiers.
 
-| Prop           | Type                  | Description                                     |
-| -------------- | --------------------- | ----------------------------------------------- |
-| `fields`       | `array`               | Array of field definitions                      |
-| `setState`     | `function`            | React setState function                         |
-| `rules`        | `array` _(optional)_  | Top-level rules referenced by field triggers    |
+| Prop       | Type                 | Description                                  |
+| ---------- | -------------------- | -------------------------------------------- |
+| `fields`   | `array`              | Array of field definitions                   |
+| `setState` | `function`           | React setState function                      |
+| `rules`    | `array` _(optional)_ | Top-level rules referenced by field triggers |
 
 ### Field Schema
 
 Each field object supports:
 
-| Property | Type | Description |
-|----------|------|-------------|
-| `name` | `string` | Field name (required) |
-| `type` | `string` | Field type (string, email, boolean, etc.) |
-| `title` | `string` | Display label (preferred over `label`) |
-| `label` | `string` | Display label (legacy, use `title`) |
-| `width` | `number` | Width percentage (25, 50, 75, 100) |
-| `default` | `any` | Default value |
-| `readOnly` | `boolean` | Make field read-only |
-| `required` | `boolean` | Mark field as required |
-| `placeholder` | `string` | Placeholder text |
-| `description` | `string` | Help text below field |
-| `helper` | `string` | Additional help text |
-| `error` | `string` | Error message to display |
-| `leadingIcon` | `Component` | Icon component before input |
-| `trailingIcon` | `Component` | Icon component after input |
-| `modifiers` | `array` | (Legacy) field-local modifiers for values |
-| `triggers` | `array` | Triggers that reference top-level rules |
-| `conditions.hiddenWhen` | `array or object` | Conditions to hide (rendered with `hidden` class) |
-| `conditions.hiddenMode` | `any or all` | Mode for hidden conditions (default any) |
-| `conditions.readOnlyWhen` | `array or object` | Conditions to set readOnly |
-| `conditions.readOnlyMode` | `any or all` | Mode for readOnly conditions (default any) |
-| `pattern` | `RegExp \| string \| Array<{ regex, message } \| string>` | Client-side pattern checks with messages |
-| `options` | `array` | Options for select, radio, multiselect fields |
-| `fields` | `array` | Sub-fields for array/subForm types |
+| Property                  | Type                                                      | Description                                       |
+| ------------------------- | --------------------------------------------------------- | ------------------------------------------------- |
+| `name`                    | `string`                                                  | Field name (required)                             |
+| `type`                    | `string`                                                  | Field type (string, email, boolean, etc.)         |
+| `title`                   | `string`                                                  | Display label (preferred over `label`)            |
+| `label`                   | `string`                                                  | Display label (legacy, use `title`)               |
+| `width`                   | `number`                                                  | Width percentage (25, 50, 75, 100)                |
+| `default`                 | `any`                                                     | Default value                                     |
+| `readOnly`                | `boolean`                                                 | Make field read-only                              |
+| `required`                | `boolean`                                                 | Mark field as required                            |
+| `placeholder`             | `string`                                                  | Placeholder text                                  |
+| `description`             | `string`                                                  | Help text below field                             |
+| `helper`                  | `string`                                                  | Additional help text                              |
+| `error`                   | `string`                                                  | Error message to display                          |
+| `leadingIcon`             | `Component`                                               | Icon component before input                       |
+| `trailingIcon`            | `Component`                                               | Icon component after input                        |
+| `modifiers`               | `array`                                                   | (Legacy) field-local modifiers for values         |
+| `triggers`                | `array`                                                   | Triggers that reference top-level rules           |
+| `conditions.hiddenWhen`   | `array or object`                                         | Conditions to hide (rendered with `hidden` class) |
+| `conditions.hiddenMode`   | `any or all`                                              | Mode for hidden conditions (default any)          |
+| `conditions.readOnlyWhen` | `array or object`                                         | Conditions to set readOnly                        |
+| `conditions.readOnlyMode` | `any or all`                                              | Mode for readOnly conditions (default any)        |
+| `pattern`                 | `RegExp \| string \| Array<{ regex, message } \| string>` | Client-side pattern checks with messages          |
+| `options`                 | `array`                                                   | Options for select, radio, multiselect fields     |
+| `fields`                  | `array`                                                   | Sub-fields for array/subForm types                |
 
 ### Modifiers (legacy)
 
@@ -252,7 +248,13 @@ const rules = [
   {
     name: "fullNameRule",
     effects: [
-      { targetField: "displayName", prop: "value", type: "concat", kind: "string", value: " " },
+      {
+        targetField: "displayName",
+        prop: "value",
+        type: "concat",
+        kind: "string",
+        value: " ",
+      },
       { targetField: "age", prop: "readOnly", value: true },
     ],
   },
@@ -281,9 +283,18 @@ Trigger shape on a field:
 Pass `rules` to both `createFormHandler` and `Form`:
 
 ```jsx
-const handleChange = createFormHandler({ fields, rules, setState: setFormData });
+const handleChange = createFormHandler({
+  fields,
+  rules,
+  setState: setFormData,
+});
 
-<Form fields={fields} rules={rules} onChange={handleChange} formData={formData} />
+<Form
+  fields={fields}
+  rules={rules}
+  onChange={handleChange}
+  formData={formData}
+/>;
 ```
 
 Hidden fields remain mounted and use Tailwind's `hidden` class so values still update.
@@ -311,8 +322,13 @@ src/
 If you're currently mapping fields manually:
 
 **Before:**
+
 ```jsx
-import { ReturnFieldsV2, createFormHandler, initializeFormData } from "@reactfast/forms";
+import {
+  ReturnFieldsV2,
+  createFormHandler,
+  initializeFormData,
+} from "@reactfast/forms";
 
 const [formData, setFormData] = useState(() => initializeFormData(fields));
 const handleChange = createFormHandler({ fields, setState: setFormData });
@@ -320,7 +336,10 @@ const handleChange = createFormHandler({ fields, setState: setFormData });
 return (
   <div className="-mx-2 flex flex-wrap">
     {fields.map((field) => (
-      <div key={field.name} className={`${getWidthClass(field.width)} mb-4 px-2`}>
+      <div
+        key={field.name}
+        className={`${getWidthClass(field.width)} mb-4 px-2`}
+      >
         <ReturnFieldsV2
           field={field}
           value={formData[field.name]}
@@ -333,19 +352,14 @@ return (
 ```
 
 **After:**
+
 ```jsx
 import { Form, createFormHandler } from "@reactfast/forms";
 
 const [formData, setFormData] = useState({});
 const handleChange = createFormHandler({ fields, setState: setFormData });
 
-return (
-  <Form
-    fields={fields}
-    onChange={handleChange}
-    formData={formData}
-  />
-);
+return <Form fields={fields} onChange={handleChange} formData={formData} />;
 ```
 
 ---
