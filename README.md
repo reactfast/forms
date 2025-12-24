@@ -1,6 +1,6 @@
 # 🎛️ @reactfast/forms
 
-test auto pub
+test auto publish
 
 **Dynamic React forms powered by JSON schemas, modifiers, and subforms.**  
 Create complex, adaptive form systems without boilerplate — designed for scale, simplicity, and composability.
