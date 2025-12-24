@@ -1,6 +1,6 @@
 {
   "name": "@reactfast/forms",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Dynamic React forms with JSON schema, modifiers, and subforms",
   "main": "dist/ctrlform.cjs.js",
   "module": "dist/ctrlform.es.js",
