@@ -1,6 +1,6 @@
 {
   "name": "@reactfast/forms",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Dynamic React forms with JSON schema, modifiers, and subforms",
   "main": "dist/ctrlform.cjs.js",
   "module": "dist/ctrlform.es.js",
@@ -13,7 +13,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint src --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "release:patch": "npm version patch --no-git-tag-version && pnpm build && npm publish --access public",
+    "release:minor": "npm version minor --no-git-tag-version && pnpm build && npm publish --access public",
+    "release:major": "npm version major --no-git-tag-version && pnpm build && npm publish --access public"
   },
   "browserslist": "defaults, not ie <= 11",
   "keywords": [
