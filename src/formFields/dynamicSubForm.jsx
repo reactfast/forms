@@ -3,6 +3,20 @@
 import { useEffect, useState } from "react";
 import { ReturnFieldsV2 } from "../returnFields.jsx";
 
+function getWidthClass(width) {
+  switch (width) {
+    case 25:
+      return "w-full sm:w-1/4";
+    case 50:
+      return "w-full sm:w-1/2";
+    case 75:
+      return "w-full sm:w-3/4";
+    case 100:
+    default:
+      return "w-full";
+  }
+}
+
 /**
  * @typedef {import('index').NovaForms.DynamicSubFormProps} DynamicSubFormProps
  */
@@ -119,7 +133,7 @@ export default function DynamicSubForm({
         {valueArray.map((entry, index) => (
           <div
             key={index}
-            className="relative space-y-2 rounded border bg-white p-4 shadow"
+            className="relative rounded border bg-white p-4 shadow mb-4"
           >
             <div className="mb-2 flex items-center justify-between">
               <span className="text-sm font-semibold text-gray-600">
@@ -149,16 +163,20 @@ export default function DynamicSubForm({
               </div>
             </div>
 
-            {objFields.map((field, fIndex) => (
-              <>
-                <ReturnFieldsV2
+            <div className="-mx-2 flex flex-wrap">
+              {objFields.map((field, fIndex) => (
+                <div
                   key={fIndex}
-                  field={field}
-                  value={entry[field.name] || ""}
-                  onChange={(e) => handleFieldChange(index, e)}
-                />
-              </>
-            ))}
+                  className={`${getWidthClass(field.width || 100)} mb-4 px-2`}
+                >
+                  <ReturnFieldsV2
+                    field={field}
+                    value={entry[field.name] || ""}
+                    onChange={(e) => handleFieldChange(index, e)}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         ))}
       </div>

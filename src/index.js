@@ -1,8 +1,13 @@
-import "./initFields";
+export { initForms } from "./initForms";
+export { FormsProvider } from "./formsProvider";
 
-// Export everything you want users to access
-export { ReturnFieldsV2 } from "./returnFields";
+// Utils
 export { createFormHandler } from "./handlers/createFormHandler";
 export { registerField, getField, getAllFields } from "./core/fieldRegistry";
-export { Form } from "./NovaForm.jsx";
 export { initializeFormData } from "./utils/initializeFormData";
+
+// Components
+export { ReturnFieldsV2 } from "./returnFields";
+export { Form } from "./Form.jsx";
+export { Wizard } from "./Wizard.jsx";
+export { TabbedForm } from "./TabbedForm.jsx";

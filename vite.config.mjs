@@ -7,12 +7,18 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.js"),
-      name: "NovaForms",
-      fileName: (format) => `ctrlform.${format}.js`,
-      formats: ["es", "umd", "cjs"], // <- add cjs for backward compatibility
+      name: "Forms",
+      fileName: (format) =>
+        format === "cjs" ? `forms.cjs` : `forms.${format}.js`,
+      formats: ["es", "umd", "cjs"],
     },
     rollupOptions: {
-      external: ["react", "react-dom"],
+      external: [
+        "react",
+        "react-dom",
+        "react/jsx-runtime",
+        "react/jsx-dev-runtime",
+      ],
       output: {
         globals: {
           react: "React",
