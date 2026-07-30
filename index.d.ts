@@ -63,6 +63,13 @@ declare module NovaForms {
     title: string;
     type: string;
     width: number;
+
+    /**
+     * When true (on array/subForm fields), changes are saved automatically
+     * after a brief debounce instead of requiring manual "Save" click.
+     * Default: `false`
+     */
+    autosave?: boolean;
   }
 
   interface FormRule {
@@ -190,6 +197,7 @@ declare module NovaForms {
   }
 
   interface DynamicSubFormProps {
+    field?: FormField;
     fields: DynamicSubFormField[];
     onSave?: (values: any[]) => void;
 

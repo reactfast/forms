@@ -20,11 +20,7 @@ const countFilledFields = (fields, formData) => {
   return { filled, total };
 };
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
-export function TabbedForm({
+export function Tabs({
   config = {},
   onSubmit = () => {},
   onTabChange = () => {},
@@ -77,7 +73,9 @@ export function TabbedForm({
       ? Object.values(tabProgress).reduce((acc, tab) => {
           return (
             acc +
-            (tab.total > 0 ? (tab.filled / tab.total) * (100 / tabs.length) : 0)
+            (tab.total > 0
+              ? (tab.filled / tab.total) * (100 / tabs.length)
+              : 0)
           );
         }, 0)
       : 0;
@@ -106,15 +104,14 @@ export function TabbedForm({
 
   // Apply default styles
   const defaultStyles = {
-    container: "min-h-screen bg-white",
-    contentWrapper: "mx-auto max-w-5xl px-6 py-8 sm:py-12 lg:py-16",
+    container: "bg-white",
+    contentWrapper: "mx-auto max-w-5xl",
     header:
-      "font-display text-3xl font-bold tracking-tight sm:mb-2 sm:text-6xl sm:font-light",
+      "font-display text-2xl font-bold tracking-tight sm:text-3xl",
     card: "rounded-xl border border-[#F5F5F5] bg-white p-8 shadow-sm sm:p-12",
     button:
       "inline-flex items-center rounded-lg px-6 py-3 text-sm font-medium transition-all duration-200",
     primaryButton: "bg-[#020DF9] text-white hover:bg-[#0209D9]",
-    secondaryButton: "bg-transparent text-[#4A4A4A] hover:bg-[#FAFAFA]",
     disabledButton: "cursor-not-allowed bg-transparent text-[#E8E8E8]",
     ...styles,
   };
@@ -128,7 +125,6 @@ export function TabbedForm({
     ...(theme.card && { card: theme.card }),
     ...(theme.button && { button: theme.button }),
     ...(theme.primaryButton && { primaryButton: theme.primaryButton }),
-    ...(theme.secondaryButton && { secondaryButton: theme.secondaryButton }),
     ...(theme.disabledButton && { disabledButton: theme.disabledButton }),
   };
 
@@ -144,7 +140,7 @@ export function TabbedForm({
   const cardBackgroundColor = theme.cardBackground || "#fff";
   const primaryButtonBg = theme.primaryButtonBg || "#020DF9";
   const primaryButtonText = theme.primaryButtonText || "#fff";
-  const tabActiveColor = theme.tabActiveColor || "#4F46E5";
+  const tabActiveColor = theme.tabActiveColor || primaryButtonBg;
   const tabInactiveColor = theme.tabInactiveColor || "#6B7280";
   const tabHoverColor = theme.tabHoverColor || "#374151";
   const tabBorderColor = theme.tabBorderColor || "#E5E7EB";
@@ -152,51 +148,30 @@ export function TabbedForm({
   return (
     <div className={themedStyles.container} style={{ backgroundColor }}>
       <div className={themedStyles.contentWrapper}>
-        {/* Header Section */}
-        <div className="mb-8">
-          <h1
-            className={`${themedStyles.header}`}
-            style={{ color: headerColor }}
-          >
-            {config.title || "Tabbed Form"}
-          </h1>
-          {config.subtitle && (
-            <p
-              className="text-base font-light sm:mb-7"
-              style={{ color: subtitleColor }}
-            >
-              {config.subtitle}
-            </p>
-          )}
-          {config.showProgress !== false && (
-            <p className="mt-1 text-sm" style={{ color: progressTextColor }}>
-              {Math.round(totalProgress)}% Complete
-            </p>
-          )}
-        </div>
-
-        {/* Progress Bar */}
-        {config.showProgress !== false && (
+        {/* Header — optional */}
+        {(config.title || config.subtitle) && (
           <div className="mb-6">
-            <div
-              className="h-1 overflow-hidden rounded-full"
-              style={{
-                backgroundColor: progressBarBackgroundColor,
-              }}
-            >
-              <div
-                className="h-full rounded-full transition-all duration-500 ease-out"
-                style={{
-                  width: `${totalProgress}%`,
-                  backgroundColor: progressBarColor,
-                }}
-              />
-            </div>
+            {config.title && (
+              <h1
+                className={themedStyles.header}
+                style={{ color: headerColor }}
+              >
+                {config.title}
+              </h1>
+            )}
+            {config.subtitle && (
+              <p
+                className="mt-1 text-base font-light"
+                style={{ color: subtitleColor }}
+              >
+                {config.subtitle}
+              </p>
+            )}
           </div>
         )}
 
         {/* Tab Navigation — horizontally scrollable on all screen sizes */}
-        <div className="mb-8">
+        <div className="mb-6">
           <div
             className="border-b dark:border-white/10"
             style={{ borderColor: tabBorderColor }}
@@ -208,7 +183,6 @@ export function TabbedForm({
             >
               {tabs.map((tab, index) => {
                 const isCurrent = index === currentTab;
-                const TabIcon = tab.icon;
                 const progress = tabProgress[index] || {
                   filled: 0,
                   total: 0,
@@ -222,12 +196,9 @@ export function TabbedForm({
                     type="button"
                     onClick={() => handleTabChange(index)}
                     aria-current={isCurrent ? "page" : undefined}
-                    className={classNames(
-                      isCurrent
-                        ? "border-b-2"
-                        : "border-transparent",
-                      "group inline-flex shrink-0 items-center border-b-2 px-1 py-3 text-sm font-medium whitespace-nowrap transition-colors duration-200",
-                    )}
+                    className={`group inline-flex shrink-0 items-center border-b-2 px-1 py-3 text-sm font-medium whitespace-nowrap transition-colors duration-200 ${
+                      isCurrent ? "" : "border-transparent"
+                    }`}
                     style={{
                       borderColor: isCurrent ? tabActiveColor : undefined,
                       color: isCurrent ? tabActiveColor : tabInactiveColor,
@@ -243,29 +214,18 @@ export function TabbedForm({
                       }
                     }}
                   >
-                    {TabIcon && (
-                      <TabIcon
-                        aria-hidden="true"
-                        className="-ml-0.5 mr-2 size-5"
-                        style={{
-                          color: isCurrent ? tabActiveColor : undefined,
-                        }}
-                      />
-                    )}
                     <span>{tab.name}</span>
-                    {config.showTabProgress !== false &&
-                      progress.total > 0 && (
-                        <span
-                          className={classNames(
-                            "ml-2 rounded-full px-2 py-0.5 text-xs",
-                            isComplete
-                              ? "bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400"
-                              : "bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400",
-                          )}
-                        >
-                          {progress.filled}/{progress.total}
-                        </span>
-                      )}
+                    {progress.total > 0 && (
+                      <span
+                        className={`ml-2 rounded-full px-2 py-0.5 text-xs ${
+                          isComplete
+                            ? "bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400"
+                            : "bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400"
+                        }`}
+                      >
+                        {progress.filled}/{progress.total}
+                      </span>
+                    )}
                   </button>
                 );
               })}
@@ -273,7 +233,7 @@ export function TabbedForm({
           </div>
         </div>
 
-        {/* Form Content */}
+        {/* Form Content Card */}
         <div
           className={themedStyles.card}
           style={{
@@ -281,7 +241,7 @@ export function TabbedForm({
             borderColor: borderColor,
           }}
         >
-          {/* Tab Title and Description */}
+          {/* Tab Title / Description — optional per-tab */}
           {(currentTabData.title || currentTabData.description) && (
             <div className="mb-8">
               {currentTabData.title && (
@@ -346,7 +306,7 @@ export function TabbedForm({
                   {config.submittingText || "Saving..."}
                 </>
               ) : (
-                <>{config.submitButtonText || "Submit"}</>
+                <>{config.submitButtonText || "Save"}</>
               )}
             </button>
           </div>
@@ -370,6 +330,4 @@ export function TabbedForm({
 }
 
 // Default export for backward compatibility
-export default function TabbedFormExample() {
-  return <TabbedForm config={{}} onSubmit={() => {}} />;
-}
+export default Tabs;

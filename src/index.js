@@ -11,3 +11,5 @@ export { ReturnFieldsV2 } from "./returnFields";
 export { Form } from "./Form.jsx";
 export { Wizard } from "./Wizard.jsx";
 export { TabbedForm } from "./TabbedForm.jsx";
+export { Tabs } from "./Tabs.jsx";
+export { FilteredForm } from "./FilteredForm.jsx";

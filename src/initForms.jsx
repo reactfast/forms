@@ -20,8 +20,6 @@ export function initForms() {
   registerField("time", Inputs.TimeInput);
   registerField("select", Inputs.SingleSelect);
   registerField("multiselect", Inputs.MultiSelect);
-  registerField("file", Inputs.AutoUploadFileField);
-  registerField("fileV2", Inputs.MediaSelectorModal);
   registerField("uploadToBase", Inputs.ImageUploadBase64);
   registerField("array", Inputs.DynamicSubForm);
   registerField("subForm", Inputs.DynamicSubForm);
